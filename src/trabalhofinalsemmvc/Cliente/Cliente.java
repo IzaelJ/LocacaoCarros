@@ -6,7 +6,6 @@ public class Cliente {
     private String rg;
     private String cpf;
     private String endereco;
-    private Boolean possuiLocacao;
 
     public Cliente(String nome, String sobrenome, String rg, String cpf, String endereco) {
         this.nome = nome;
@@ -14,7 +13,6 @@ public class Cliente {
         this.rg = rg;
         this.cpf = cpf;
         this.endereco = endereco;
-        this.possuiLocacao = false;
     }
     
     

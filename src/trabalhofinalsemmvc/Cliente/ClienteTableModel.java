@@ -97,8 +97,8 @@ public class ClienteTableModel extends AbstractTableModel{
 
     public void setListaClientes(List<Cliente> clientes) {
         this.lista = clientes;
-        this.fireTableDataChanged();
-        //this.fireTableRowsInserted(0,contatos.size()-1);//update JTable
+        //this.fireTableDataChanged();
+        this.fireTableRowsInserted(0,clientes.size()-1);//update JTable
     }
 
     public void limpaTabela() {

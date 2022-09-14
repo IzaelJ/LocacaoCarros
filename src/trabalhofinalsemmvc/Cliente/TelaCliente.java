@@ -61,19 +61,13 @@ public class TelaCliente extends javax.swing.JPanel {
         MaskFormatter mascaraCpf = null;
         try {
             mascaraCpf = new MaskFormatter("###.###.###-##");
+            mascaraCpf.setPlaceholder("   .   .   -  ");
         }
         catch (ParseException e) {
             System.out.println("Erro na conversao de mascara!! (CPF) ");
         }
         campoCPF = new javax.swing.JFormattedTextField(mascaraCpf);
-        MaskFormatter mascaraRg = null;
-        try {
-            mascaraRg = new MaskFormatter("##.###.###-##");
-        }
-        catch (ParseException e) {
-            System.out.println("Erro na conversao de mascara!! ");
-        }
-        campoRG = new javax.swing.JFormattedTextField(mascaraRg);
+        campoRG = new javax.swing.JFormattedTextField();
 
         erro.setLabel("popupMenu1");
 

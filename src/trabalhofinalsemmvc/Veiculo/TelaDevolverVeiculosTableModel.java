@@ -4,6 +4,7 @@
  */
 package trabalhofinalsemmvc.Veiculo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TelaDevolverVeiculosTableModel extends AbstractTableModel{
     private String[] colunas = new String[]{"Nome do Cliente", "Placa", "Marca", "Modelo", "Ano", "Data Locação", "Preço Diária", "Dias locado","Valor Locação"};
+    SimpleDateFormat formatoData = new SimpleDateFormat("dd-MM-yyyy");
 
     private List<Veiculo> lista = new ArrayList();
 
@@ -54,7 +56,7 @@ public class TelaDevolverVeiculosTableModel extends AbstractTableModel{
                 case 2: return veiculo.getMarca();
                 case 3: return ((veiculo instanceof Automovel) ? ((Automovel)veiculo).getModelo() : ((veiculo instanceof Van) ? ((Van)veiculo).getModelo() : ((Motocicleta)veiculo).getModelo()));
                 case 4: return veiculo.getAno();
-                case 5: return veiculo.getLocacao().getData();
+                case 5: return formatoData.format(veiculo.getLocacao().getData().getTime() ) ;
                 case 6: return veiculo.getValorDiariaLocacao();
                 case 7: return veiculo.getLocacao().getDias();
                 case 8: return veiculo.getLocacao().getValor();

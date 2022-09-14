@@ -63,14 +63,7 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
         valorVarianteDois = new javax.swing.JLabel();
         valorVarianteTres = new javax.swing.JLabel();
         modelo = new javax.swing.JComboBox<>();
-        MaskFormatter valordeCompra = null;
-        try {
-            valordeCompra = new MaskFormatter("######.##");
-        }
-        catch (ParseException e) {
-            System.out.println("Erro na conversao de mascara!! (valor) ");
-        }
-        valor = new javax.swing.JFormattedTextField(valordeCompra);
+        valor = new javax.swing.JFormattedTextField();
         MaskFormatter placaMasc = null;
         try {
             placaMasc = new MaskFormatter("UUU-####");
@@ -79,13 +72,7 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
             System.out.println("Erro na conversao de mascara!! (placa) ");
         }
         placa = new javax.swing.JFormattedTextField(placaMasc);
-        MaskFormatter anoMask = null;
-        try {
-            anoMask = new MaskFormatter("####");
-        }
-        catch (ParseException e) {
-            System.out.println("Erro na conversao de mascara!! (ano) ");
-        }
+        MaskFormatter anoMask = null; try { anoMask = new MaskFormatter("####"); } catch (ParseException e) {     System.out.println("Erro na conversao de mascara!! (ano) "); }
         ano = new javax.swing.JFormattedTextField(anoMask);
 
         jLabel1.setText("Ano");
@@ -128,6 +115,8 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
             }
         });
 
+        valor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+
         placa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placaActionPerformed(evt);
@@ -167,11 +156,11 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(valorVarianteTres, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(ano, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(placa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                                 .addComponent(valor, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +262,7 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
        Marca marcaVeiculo = (Marca)marcas.getSelectedItem();   
        Categoria categoriaVeiculo = (Categoria)categoria.getSelectedItem();
        Enum modeloVeiculo = (Enum)modelo.getSelectedItem();
-       double valorDeCompraVeiculo = Double.parseDouble(valor.getText());
+       Double valorDeCompraVeiculo = (valor.getValue() instanceof Double ? (Double)valor.getValue() : (Long)valor.getValue() );
        String placaVeiculo = placa.getText();
        int anoVeiculo = Integer.parseInt(ano.getText());
        

@@ -4,7 +4,9 @@
  */
 package trabalhofinalsemmvc.Veiculo;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,10 +29,12 @@ import utils.ModeloVan;
  * @author junio
  */
 public class TelaLocarVeiculo extends javax.swing.JPanel {
+
     private final TelaLocarVeiculoTableModel locarVeiculoTableModel = new TelaLocarVeiculoTableModel();
     private ClienteTableModel clienteTableModel = new ClienteTableModel();
     private ClienteMemoria clienteMemoria = new ClienteMemoria();
     private VeiculoMemoria veiculoMemoria = new VeiculoMemoria();
+
     /**
      * Creates new form TelaLocarVeiculo
      */
@@ -38,7 +42,7 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
         initComponents();
         grupoFiltroVeiculo.add(radioMarca);
         grupoFiltroVeiculo.add(radioTipo);
-        grupoFiltroVeiculo.add(radioCategoria);       
+        grupoFiltroVeiculo.add(radioCategoria);
     }
 
     /**
@@ -55,22 +59,8 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         botaoLocar = new javax.swing.JButton();
-        MaskFormatter mascaraDia = null;
-        try {
-            mascaraDia = new MaskFormatter("###");
-        }
-        catch (ParseException e) {
-            System.out.println("Erro na conversao de mascara!! (dias) ");
-        }
-        campoDiasLocacao = new javax.swing.JFormattedTextField(mascaraDia);
-        MaskFormatter mascaraData = null;
-        try {
-            mascaraData = new MaskFormatter("##/##/####");
-        }
-        catch (ParseException e) {
-            System.out.println("Erro na conversao de mascara!! (data) ");
-        }
-        campoDataLocacao = new javax.swing.JFormattedTextField(mascaraData);
+        campoDiasLocacao = new javax.swing.JFormattedTextField();
+        campoDataLocacao = new javax.swing.JFormattedTextField();
         valorTotal = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -99,11 +89,14 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
             }
         });
 
+        campoDiasLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         campoDiasLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoDiasLocacaoActionPerformed(evt);
             }
         });
+
+        campoDataLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -311,13 +304,13 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
 
     private void pesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarClienteActionPerformed
         // TODO add your handling code here:
-        try{
-            clienteTableModel.setListaClientes(clienteMemoria.encontraCliente(textoPesquisarCliente.getText())); 
-        }catch(NullPointerException e ){
+        try {
+            clienteTableModel.setListaClientes(clienteMemoria.encontraCliente(textoPesquisarCliente.getText()));
+        } catch (NullPointerException e) {
             this.apresentaInfo("É necessário informar um cliente");
         }
-        
-        
+
+
     }//GEN-LAST:event_pesquisarClienteActionPerformed
 
     private void radioTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTipoActionPerformed
@@ -344,9 +337,9 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
     }//GEN-LAST:event_radioCategoriaActionPerformed
 
     private void botaofiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaofiltrarActionPerformed
-        try{
+        try {
             executaFiltroTabela();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             this.apresentaInfo("É necessário escolher um filtro!");
         }
 
@@ -358,20 +351,19 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
 
     private void botaoLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLocarActionPerformed
         try {
-        String x = campoDiasLocacao.getText();
-        double a = Double.parseDouble(x);
-        Veiculo veiculoParaLocar = locarVeiculoTableModel.getVeiculo(tabelaVeiculos.getSelectedRow());
-        double preco = veiculoMemoria.valorDiaria(veiculoParaLocar);
-        double ax = a * preco;
-        x = String.valueOf(ax);
-        valorTotal.setText("Valor: " + x + " total");
-             realizarLocacao();
+            String x = campoDiasLocacao.getText();
+            double a = Double.parseDouble(x);
+            Veiculo veiculoParaLocar = locarVeiculoTableModel.getVeiculo(tabelaVeiculos.getSelectedRow());
+            double preco = veiculoMemoria.valorDiaria(veiculoParaLocar);
+            double ax = a * preco;
+            x = String.valueOf(ax);
+            valorTotal.setText("Valor: " + x + " total");
+            realizarLocacao();
+        } catch (java.lang.NumberFormatException e) {
+            this.apresentaErro("Nao deixe campos vazios! ");
         }
-       catch (java.lang.NumberFormatException e) {
-           this.apresentaErro("Nao deixe campos vazios! ");
-       }
-   
-        
+
+
     }//GEN-LAST:event_botaoLocarActionPerformed
 
     private void campoDiasLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDiasLocacaoActionPerformed
@@ -404,7 +396,7 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
     private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
     private void executaFiltroTabela() {
-        
+
         if (radioCategoria.isSelected()) {
 
             List<Veiculo> veiculosFiltrados = veiculoMemoria.getListaCategoria(Categoria.valueOf(comboFiltro.getSelectedItem().toString()));
@@ -431,31 +423,40 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void realizarLocacao() {
+        Cliente clienteParaLocar = null;
+        Veiculo veiculoParaLocar = null;
         
-        Cliente clienteParaLocar = clienteTableModel.getCliente(clienteTable.getSelectedRow());
-        Veiculo veiculoParaLocar = locarVeiculoTableModel.getVeiculo(tabelaVeiculos.getSelectedRow());
-        //Implementar datas no formulário
-        //Calendar data = campoDataLocacao.getText();
+        try {
+            clienteParaLocar = clienteTableModel.getCliente(clienteTable.getSelectedRow());
+            
+
+        } catch (IndexOutOfBoundsException ex) {
+            this.apresentaInfo("Selecione todos os campos antes de prosseguir");
+        }
+        
+        try {
+            veiculoParaLocar = locarVeiculoTableModel.getVeiculo(tabelaVeiculos.getSelectedRow());
+
+        } catch (IndexOutOfBoundsException ex) {
+            this.apresentaInfo("Selecione todos os campos antes de prosseguir");
+        }
+
         int diasLocacao = Integer.parseInt(campoDiasLocacao.getText());
-        Date date = new Date();
-        GregorianCalendar caralhendario = new GregorianCalendar();
-        caralhendario.setTime(date);
-        
-        veiculoMemoria.locar(clienteParaLocar, veiculoParaLocar, diasLocacao, caralhendario);
+        Calendar dataLocacao = Calendar.getInstance();
+        dataLocacao.setTime((Date) campoDataLocacao.getValue());
+        veiculoMemoria.locar(clienteParaLocar, veiculoParaLocar, diasLocacao, dataLocacao);
+
     }
-    
+
     //Métodos de mensagem
     public void apresentaErro(String erro) {
-        JOptionPane.showMessageDialog(null,erro + "\n", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, erro + "\n", "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void apresentaInfo(String info) {
-        JOptionPane.showMessageDialog(null,info + "\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, info + "\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
-
-
-    
 
 }

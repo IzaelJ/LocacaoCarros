@@ -216,14 +216,10 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascaraCpf)"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter mascaraCpf = null;&#xa;try {&#xa;mascaraCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (CPF) &quot;);&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter mascaraCpf = null;&#xa;try {&#xa;mascaraCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xa;mascaraCpf.setPlaceholder(&quot;   .   .   -  &quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (CPF) &quot;);&#xa;}"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="campoRG">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascaraRg)"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter mascaraRg = null;&#xa;try {&#xa;mascaraRg = new MaskFormatter(&quot;##.###.###-##&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! &quot;);&#xa;}"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
