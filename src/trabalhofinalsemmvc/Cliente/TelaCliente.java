@@ -4,25 +4,29 @@
  */
 package trabalhofinalsemmvc.Cliente;
 
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.CPFValidator;
+import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author eduar
  */
 public class TelaCliente extends javax.swing.JPanel {
+
     private ClienteTableModel clienteTableModel = new ClienteTableModel();
     private Cliente clienteSelecionadoParaAtualizacao;
     private ClienteMemoria clienteMemoria = new ClienteMemoria();
     private int linhaClicadaParaAtualizacao = -1;
-    
-    /**
-     * Creates new form TelaCliente
-     */
+
     public TelaCliente() {
         initComponents();
+
         this.botaoCriar.addActionListener(e -> criarCliente());
         this.botaoAtualizar.addActionListener(e -> atualizarCliente());
         this.botaoExcluir.addActionListener(e -> excluirCliente());
@@ -38,6 +42,7 @@ public class TelaCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        erro = new java.awt.PopupMenu();
         jPanel1 = new javax.swing.JPanel();
         botaoCriar = new javax.swing.JButton();
         botaoAtualizar = new javax.swing.JButton();
@@ -52,11 +57,32 @@ public class TelaCliente extends javax.swing.JPanel {
         Endereco = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
         campoSobrenome = new javax.swing.JTextField();
-        campoRG = new javax.swing.JTextField();
-        campoCPF = new javax.swing.JTextField();
         campoEndereco = new javax.swing.JTextField();
+        MaskFormatter mascaraCpf = null;
+        try {
+            mascaraCpf = new MaskFormatter("###.###.###-##");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (CPF) ");
+        }
+        campoCPF = new javax.swing.JFormattedTextField(mascaraCpf);
+        MaskFormatter mascaraRg = null;
+        try {
+            mascaraRg = new MaskFormatter("##.###.###-##");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! ");
+        }
+        campoRG = new javax.swing.JFormattedTextField(mascaraRg);
+
+        erro.setLabel("popupMenu1");
 
         botaoCriar.setText("Criar");
+        botaoCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCriarActionPerformed(evt);
+            }
+        });
 
         botaoAtualizar.setText("Atualizar");
 
@@ -82,36 +108,42 @@ public class TelaCliente extends javax.swing.JPanel {
 
         Endereco.setText("Endereço");
 
+        campoCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCPFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(Endereco)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoEndereco))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Sobrenome)
+                            .addComponent(RG)
+                            .addComponent(CPF))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Endereco)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoEndereco))
+                                .addGap(6, 6, 6)
+                                .addComponent(campoCPF))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Sobrenome)
-                                    .addComponent(RG)
-                                    .addComponent(CPF))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(campoSobrenome)
-                                    .addComponent(campoRG)
-                                    .addComponent(campoCPF)
-                                    .addComponent(campoNome)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Nome)
-                                .addGap(0, 400, Short.MAX_VALUE)))))
+                                    .addComponent(campoNome)
+                                    .addComponent(campoRG)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Nome)
+                        .addGap(0, 400, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
@@ -127,7 +159,7 @@ public class TelaCliente extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCriar)
                     .addComponent(botaoAtualizar)
@@ -141,18 +173,17 @@ public class TelaCliente extends javax.swing.JPanel {
                     .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Sobrenome, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoSobrenome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(RG))
-                    .addComponent(campoRG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sobrenome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoSobrenome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RG)
+                    .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CPF)
                     .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Endereco))
@@ -182,6 +213,16 @@ public class TelaCliente extends javax.swing.JPanel {
         this.setCliente(cliente);
     }//GEN-LAST:event_tabelaClientesFrameMouseClicked
 
+    private void botaoCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_botaoCriarActionPerformed
+
+    private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCPFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CPF;
@@ -193,65 +234,73 @@ public class TelaCliente extends javax.swing.JPanel {
     private javax.swing.JButton botaoCriar;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoListar;
-    private javax.swing.JTextField campoCPF;
+    private javax.swing.JFormattedTextField campoCPF;
     private javax.swing.JTextField campoEndereco;
     private javax.swing.JTextField campoNome;
-    private javax.swing.JTextField campoRG;
+    private javax.swing.JFormattedTextField campoRG;
     private javax.swing.JTextField campoSobrenome;
+    private java.awt.PopupMenu erro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaClientesFrame;
     // End of variables declaration//GEN-END:variables
-    
-    
+
     //Comportamento dos botoes
     public void criarCliente() {
-        try{
-            System.out.println("Criar Cliente?");
-            Cliente cliente = this.getClienteFormulario();
-            clienteMemoria.inserir(cliente);
-            clienteTableModel.adicionaCliente(cliente);
-            
-        }catch(Exception ex){
+        try {
+            String cpf = campoCPF.getText();
+            CPFValidator cpfValidator = new CPFValidator();
+            List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf);
+
+            if (erros.size() > 0) {
+                this.apresentaInfo("Digite seu CPF corretamente!");
+            } 
+            else {
+                Cliente cliente = this.getClienteFormulario();
+                clienteMemoria.inserir(cliente);
+                clienteTableModel.adicionaCliente(cliente);
+               
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
             this.apresentaErro("Erro ao criar cliente.");
         }
     }
 
     public void atualizarCliente() {
-        try{
-            
+        String cpf = campoCPF.getText();
+        CPFValidator cpfValidator = new CPFValidator();
+        List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf);
+        try {
             Cliente cliente = this.getClienteParaAtualizar();
-            if(cliente==null){
+            if (cliente == null) {
                 this.apresentaInfo("Selecione um cliente na tabela para atualizar.");
-                return;
             }
-            clienteMemoria.atualizar(cliente);
-            this.atualizarClienteNaTabela(cliente);
             
-        }catch(Exception ex){
+        } catch (Exception ex) {
             this.apresentaErro("Erro ao atualizar cliente.");
         }
     }
 
     public void excluirCliente() {
-        try{
+        try {
             List<Cliente> listaParaExcluir = this.getClientesParaExcluirDaTabela();
             clienteMemoria.excluirLista(listaParaExcluir);
             this.excluirClientesDaTabela(listaParaExcluir);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             this.apresentaErro("Erro ao excluir clientes.");
         }
     }
 
     public void listarCliente() {
-        try{
+        try {
             List<Cliente> lista = clienteMemoria.getLista();
             clienteTableModel.setListaClientes(lista);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             this.apresentaErro("Erro ao listar clientes.");
         }
     }
+
     //Métodos formulário
     public void setCliente(Cliente cliente) {
         this.clienteSelecionadoParaAtualizacao = cliente;
@@ -260,11 +309,11 @@ public class TelaCliente extends javax.swing.JPanel {
         campoRG.setText(cliente.getRg());
         campoEndereco.setText(cliente.getEndereco());
         campoNome.setText(cliente.getNome());
-  
+
     }
 
     public Cliente getClienteParaAtualizar() {
-        if(clienteSelecionadoParaAtualizacao==null){
+        if (clienteSelecionadoParaAtualizacao == null) {
             return null;
         }
         clienteSelecionadoParaAtualizacao.setNome(campoNome.getText());
@@ -272,19 +321,20 @@ public class TelaCliente extends javax.swing.JPanel {
         clienteSelecionadoParaAtualizacao.setCpf(campoCPF.getText());
         clienteSelecionadoParaAtualizacao.setRg(campoRG.getText());
         clienteSelecionadoParaAtualizacao.setEndereco(campoEndereco.getText());
-        return clienteSelecionadoParaAtualizacao;                
+        return clienteSelecionadoParaAtualizacao;
     }
-    
+
     public Cliente getClienteFormulario() {
-        
-       String nome = campoNome.getText();
-       String sobrenome = campoSobrenome.getText();
-       String rg = campoRG.getText();
-       String cpf = campoCPF.getText();
-       String endereco = campoEndereco.getText();
-       
-       return new Cliente(nome, sobrenome, rg,cpf, endereco);
+
+        String nome = campoNome.getText();
+        String sobrenome = campoSobrenome.getText();
+        String rg = campoRG.getText();
+        String cpf = campoCPF.getText();
+        String endereco = campoEndereco.getText();
+
+        return new Cliente(nome, sobrenome, rg, cpf, endereco);
     }
+
     //Métodos Tabela
     public void inserirClienteTabela(Cliente cliente) {
         clienteTableModel.adicionaCliente(cliente);
@@ -293,7 +343,7 @@ public class TelaCliente extends javax.swing.JPanel {
     public void setListaClientesTabela(List<Cliente> lista) {
         clienteTableModel.setListaClientes(lista);
     }
-    
+
     public List<Cliente> getClientesParaExcluirDaTabela() {
         int[] linhasSelecionadas = tabelaClientesFrame.getSelectedRows();
         List<Cliente> listaExcluir = new ArrayList();
@@ -303,22 +353,23 @@ public class TelaCliente extends javax.swing.JPanel {
         }
         return listaExcluir;
     }
-    
+
     public void excluirClientesDaTabela(List<Cliente> listaParaExcluir) {
         clienteTableModel.removeClientes(listaParaExcluir);
     }
 
     public void atualizarClienteNaTabela(Cliente cliente) {
-        
+
         clienteTableModel.fireTableRowsUpdated(linhaClicadaParaAtualizacao, linhaClicadaParaAtualizacao);
-        
+
     }
+
     //Métodos de mensagem
     public void apresentaErro(String erro) {
-        JOptionPane.showMessageDialog(null,erro + "\n", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, erro + "\n", "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void apresentaInfo(String info) {
-        JOptionPane.showMessageDialog(null,info + "\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, info + "\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 }

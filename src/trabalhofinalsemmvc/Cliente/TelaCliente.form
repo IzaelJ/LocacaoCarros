@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Menu class="java.awt.PopupMenu" name="erro">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="popupMenu1"/>
+      </Properties>
+    </Menu>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -32,38 +39,38 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Endereco" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="campoEndereco" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Endereco" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="campoEndereco" max="32767" attributes="0"/>
+                              <Component id="Sobrenome" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="RG" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="CPF" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="campoCPF" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Sobrenome" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="RG" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="CPF" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="campoSobrenome" max="32767" attributes="0"/>
-                                      <Component id="campoRG" max="32767" attributes="0"/>
-                                      <Component id="campoCPF" alignment="0" max="32767" attributes="0"/>
                                       <Component id="campoNome" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="campoRG" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Nome" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
-                              </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Nome" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -84,7 +91,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botaoCriar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -100,22 +107,20 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Sobrenome" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoSobrenome" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="RG" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="campoRG" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="Sobrenome" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoSobrenome" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="CPF" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoCPF" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="RG" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoRG" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="campoEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Endereco" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,6 +135,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Criar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCriarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaoAtualizar">
           <Properties>
@@ -200,11 +208,22 @@
         </Component>
         <Component class="javax.swing.JTextField" name="campoSobrenome">
         </Component>
-        <Component class="javax.swing.JTextField" name="campoRG">
-        </Component>
-        <Component class="javax.swing.JTextField" name="campoCPF">
-        </Component>
         <Component class="javax.swing.JTextField" name="campoEndereco">
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="campoCPF">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCPFActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascaraCpf)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter mascaraCpf = null;&#xa;try {&#xa;mascaraCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (CPF) &quot;);&#xa;}"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="campoRG">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascaraRg)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter mascaraRg = null;&#xa;try {&#xa;mascaraRg = new MaskFormatter(&quot;##.###.###-##&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! &quot;);&#xa;}"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

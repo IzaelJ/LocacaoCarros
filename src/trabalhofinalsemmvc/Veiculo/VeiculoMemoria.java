@@ -66,13 +66,13 @@ public class VeiculoMemoria {
 
     public List<Veiculo> getListaAutomovel() {
         List<Veiculo> veiculosFiltrados = new ArrayList();
-        
+
         for (Veiculo veiculo : getListaAlugaveis()) {
             if (veiculo instanceof Automovel) {
                 veiculosFiltrados.add(veiculo);
             }
         }
-        
+
         return veiculosFiltrados;
     }
 
@@ -95,7 +95,6 @@ public class VeiculoMemoria {
         }
         return veiculosFiltrados;
     }
-
 
     public List<Veiculo> getListaMarca(Marca marca) {
 
@@ -141,6 +140,10 @@ public class VeiculoMemoria {
 
     void locar(Cliente cliente, Veiculo veiculo, int dias, Calendar data) {
         veiculos.get(veiculos.indexOf(veiculo)).locar(dias, data, cliente);
+       
+    }
 
+    double valorDiaria(Veiculo veiculo) {
+        return veiculo.getValorDiariaLocacao();
     }
 }

@@ -19,34 +19,29 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                              <Component id="botaoCriar" min="-2" pref="80" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="valorVarianteUm" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="valorVarianteDois" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelMarca" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelModelo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="categoria" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="marcas" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="modelo" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                      <Component id="botaoCriar" min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="valorVarianteUm" alignment="0" max="32767" attributes="0"/>
+                          <Component id="valorVarianteDois" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelModelo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="categoria" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="marcas" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="modelo" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -56,18 +51,16 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="valor" alignment="0" max="32767" attributes="0"/>
-                          <Component id="placa" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ano" min="-2" max="-2" attributes="0"/>
-                                  <Component id="valorVarianteTres" min="-2" pref="185" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="valorVarianteTres" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="ano" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="placa" alignment="0" pref="94" max="32767" attributes="0"/>
+                              <Component id="valor" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
+              <EmptySpace min="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,17 +88,17 @@
               <Component id="valorVarianteDois" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="valorVarianteTres" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelValor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="valor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelPlaca" min="-2" max="-2" attributes="0"/>
-                  <Component id="placa" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="placa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ano" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,19 +111,10 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="ano">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ano"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="placa">
-    </Component>
-    <Component class="javax.swing.JTextField" name="valor">
     </Component>
     <Component class="javax.swing.JLabel" name="labelPlaca">
       <Properties>
@@ -208,6 +192,27 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Enum&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="valor">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(valordeCompra)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter valordeCompra = null;&#xa;try {&#xa;valordeCompra = new MaskFormatter(&quot;######.##&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (valor) &quot;);&#xa;}"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="placa">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="placaActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(placaMasc)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter placaMasc = null;&#xa;try {&#xa;placaMasc = new MaskFormatter(&quot;UUU-####&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (placa) &quot;);&#xa;}"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="ano">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(anoMask)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MaskFormatter anoMask = null;&#xa;try {&#xa;anoMask = new MaskFormatter(&quot;####&quot;);&#xa;}&#xa;catch (ParseException e) {&#xa;    System.out.println(&quot;Erro na conversao de mascara!! (ano) &quot;);&#xa;}"/>
       </AuxValues>
     </Component>
   </SubComponents>

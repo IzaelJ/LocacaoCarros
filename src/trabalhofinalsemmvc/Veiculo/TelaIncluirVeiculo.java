@@ -5,6 +5,8 @@
 package trabalhofinalsemmvc.Veiculo;
 
 
+import java.text.ParseException;
+import javax.swing.text.MaskFormatter;
 import trabalhofinalsemmvc.utils.Estado;
 import trabalhofinalsemmvc.utils.Marca;
 import utils.Categoria;
@@ -48,10 +50,7 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ano = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        placa = new javax.swing.JTextField();
-        valor = new javax.swing.JTextField();
         labelPlaca = new javax.swing.JLabel();
         categoria = new javax.swing.JComboBox<>();
         labelModelo = new javax.swing.JLabel();
@@ -64,8 +63,30 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
         valorVarianteDois = new javax.swing.JLabel();
         valorVarianteTres = new javax.swing.JLabel();
         modelo = new javax.swing.JComboBox<>();
-
-        ano.setText("jTextField1");
+        MaskFormatter valordeCompra = null;
+        try {
+            valordeCompra = new MaskFormatter("######.##");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (valor) ");
+        }
+        valor = new javax.swing.JFormattedTextField(valordeCompra);
+        MaskFormatter placaMasc = null;
+        try {
+            placaMasc = new MaskFormatter("UUU-####");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (placa) ");
+        }
+        placa = new javax.swing.JFormattedTextField(placaMasc);
+        MaskFormatter anoMask = null;
+        try {
+            anoMask = new MaskFormatter("####");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (ano) ");
+        }
+        ano = new javax.swing.JFormattedTextField(anoMask);
 
         jLabel1.setText("Ano");
 
@@ -107,6 +128,12 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
             }
         });
 
+        placa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,26 +142,23 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(botaoCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(valorVarianteUm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valorVarianteDois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(botaoCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(valorVarianteUm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(valorVarianteDois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelMarca)
-                                    .addComponent(labelCategoria)
-                                    .addComponent(labelModelo))
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(49, 49, 49))
+                            .addComponent(labelMarca)
+                            .addComponent(labelCategoria)
+                            .addComponent(labelModelo))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelValor)
@@ -142,13 +166,12 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valor)
-                            .addComponent(placa)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(valorVarianteTres, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addComponent(valorVarianteTres, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(placa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                .addComponent(valor, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,15 +194,15 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
                 .addComponent(valorVarianteDois)
                 .addGap(18, 18, 18)
                 .addComponent(valorVarianteTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelValor)
                     .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPlaca)
                     .addComponent(placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,9 +225,7 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
     private void botaoCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarActionPerformed
         // TODO add your handling code here:
         getVeiculoFormulario();
-        System.out.println("TE");
-        for (Veiculo veiculoTeste : veiculoIncluir.getLista())
-        System.out.println(veiculoTeste.getMarca());
+        
     }//GEN-LAST:event_botaoCriarActionPerformed
 
     private void modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloActionPerformed
@@ -225,9 +246,13 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_modeloActionPerformed
 
+    private void placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_placaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ano;
+    private javax.swing.JFormattedTextField ano;
     private javax.swing.JButton botaoCriar;
     private javax.swing.JComboBox<Categoria> categoria;
     private javax.swing.JLabel jLabel1;
@@ -238,8 +263,8 @@ public class TelaIncluirVeiculo extends javax.swing.JPanel {
     private javax.swing.JLabel labelValor;
     private javax.swing.JComboBox<Marca> marcas;
     private javax.swing.JComboBox<Enum> modelo;
-    private javax.swing.JTextField placa;
-    private javax.swing.JTextField valor;
+    private javax.swing.JFormattedTextField placa;
+    private javax.swing.JFormattedTextField valor;
     private javax.swing.JLabel valorVarianteDois;
     private javax.swing.JLabel valorVarianteTres;
     private javax.swing.JLabel valorVarianteUm;

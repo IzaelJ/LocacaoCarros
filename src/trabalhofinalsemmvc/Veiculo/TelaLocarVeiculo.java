@@ -55,8 +55,23 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         botaoLocar = new javax.swing.JButton();
-        campoDiasLocacao = new javax.swing.JFormattedTextField();
-        campoDataLocacao = new javax.swing.JFormattedTextField();
+        MaskFormatter mascaraDia = null;
+        try {
+            mascaraDia = new MaskFormatter("###");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (dias) ");
+        }
+        campoDiasLocacao = new javax.swing.JFormattedTextField(mascaraDia);
+        MaskFormatter mascaraData = null;
+        try {
+            mascaraData = new MaskFormatter("##/##/####");
+        }
+        catch (ParseException e) {
+            System.out.println("Erro na conversao de mascara!! (data) ");
+        }
+        campoDataLocacao = new javax.swing.JFormattedTextField(mascaraData);
+        valorTotal = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         radioTipo = new javax.swing.JRadioButton();
@@ -84,9 +99,11 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
             }
         });
 
-        campoDiasLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
-        campoDataLocacao.setText("jFormattedTextField2");
+        campoDiasLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDiasLocacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,27 +112,31 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(campoDiasLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoDiasLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoLocar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoLocar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(valorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoDiasLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
+                    .addComponent(campoDiasLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(valorTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoLocar)
                 .addGap(17, 17, 17))
         );
@@ -336,10 +357,26 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
     }//GEN-LAST:event_comboFiltroActionPerformed
 
     private void botaoLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLocarActionPerformed
-        
-        realizarLocacao();
+        try {
+        String x = campoDiasLocacao.getText();
+        double a = Double.parseDouble(x);
+        Veiculo veiculoParaLocar = locarVeiculoTableModel.getVeiculo(tabelaVeiculos.getSelectedRow());
+        double preco = veiculoMemoria.valorDiaria(veiculoParaLocar);
+        double ax = a * preco;
+        x = String.valueOf(ax);
+        valorTotal.setText("Valor: " + x + " total");
+             realizarLocacao();
+        }
+       catch (java.lang.NumberFormatException e) {
+           this.apresentaErro("Nao deixe campos vazios! ");
+       }
+   
         
     }//GEN-LAST:event_botaoLocarActionPerformed
+
+    private void campoDiasLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDiasLocacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDiasLocacaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoLocar;
@@ -364,6 +401,7 @@ public class TelaLocarVeiculo extends javax.swing.JPanel {
     private javax.swing.JRadioButton radioTipo;
     private javax.swing.JTable tabelaVeiculos;
     private javax.swing.JTextField textoPesquisarCliente;
+    private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
     private void executaFiltroTabela() {
         
